@@ -11,10 +11,12 @@ SRC="/home/pitmod"
 DST="/mediasrv/Filmy/"
 WORKDIR="/home/pitmod/Scripts/movcopy"
 
+echo "If you want to omit some files please remove them from $WORKDIR/wideo.rsync and enter Y."
+
 find $SRC -type f -name "*.mp4" -o -name "*.avi" -o -name "*.rmvb" -o -name "*.mkv" | grep -v -i trash | tee $WORKDIR/wideo.rsync
 
 read -p "Are you sure you want to move these files to $DST_SRV:$DST and remove from $SRC ? " -n 1 -r
-echo "If you want to omit some files please remove them from $WORKDIR/wideo.rsync and enter Y."
+
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	echo "Copying files..."
